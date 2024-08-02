@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Messages - My Portfolio</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #add8e6, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #add8e6;
+        }
+        .message-section {
+            margin: 60px 20px;
+            text-align: center;
+        }
+        .message-title {
+            font-size: 3em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .messages-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .message {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .message-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .message-body {
+            margin-bottom: 10px;
+        }
+        .message-footer {
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('projects') }}">Projects</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+                <li><a href="{{ url_for('view_messages') }}">Messages</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="message-section">
+        <h1 class="message-title">Messages</h1>
+        <div class="messages-container">
+            {% for message in messages %}
+            <div class="message">
+                <div class="message-header">{{ message[0] }} ({{ message[1] }})</div>
+                <div class="message-body">{{ message[2] }}</div>
+                <div class="message-footer">Sent on: {{ message[3] }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
